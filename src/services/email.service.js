@@ -127,97 +127,304 @@ Wasi B Backend Ledger Team
   await sendEmail(userEmail, subject, text, html);
 }
 
+async function sendTransactionEmail(userEmail, name, amount, toAccount) {
+  const subject = "Transaction Successful - Wasi B Backend Ledger";
 
-// async function sendRegisterEmail(userEmail, name) {
-//   const subject = "A Tiny Love Letter Just for You ❤️";
+  const text = `
+Hello ${name},
 
-//   const text = `
-// Hello ${name},
+Your transaction has been completed successfully.
 
-// Just wanted to remind you something today...
+Transaction Details:
+--------------------------------
+Amount Sent: ${amount}
+Recipient Account: ${toAccount}
+Status: Successful
+--------------------------------
 
-// You are the best thing that has ever happened to me. ❤️
+Thank you for using Wasi B Backend Ledger.
 
-// No matter how busy life gets, every moment with you still feels special, warm, and safe.
-// Thank you for existing, for loving me, and for making my world beautiful.
+If you did not authorize this transaction or need assistance, please contact our support team immediately.
 
-// If I could code one perfect thing in life,
-// it would still be us.
+Best regards,
+Wasi B Backend Ledger Team
+  `;
 
-// Forever yours,
-// Wasi ❤️
-//   `;
+  const html = `
+  <div style="
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    padding: 40px 20px;
+  ">
+    <div style="
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    ">
 
-//   const html = `
-//   <div style="
-//     font-family: Arial, sans-serif;
-//     background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-//     padding: 40px;
-//     border-radius: 20px;
-//     color: #ffffff;
-//     text-align: center;
-//   ">
-    
-//     <img 
-//       src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" 
-//       alt="Cute Love"
-//       style="
-//         width: 180px;
-//         border-radius: 15px;
-//         margin-bottom: 20px;
-//         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-//       "
-//     />
+      <h1 style="
+        color: #1f2937;
+        margin-bottom: 20px;
+        text-align: center;
+      ">
+        Transaction Successful
+      </h1>
 
-//     <h1 style="
-//       font-size: 36px;
-//       margin-bottom: 10px;
-//     ">
-//       Hey ${name} ❤️
-//     </h1>
+      <p style="
+        color: #374151;
+        font-size: 16px;
+        line-height: 1.8;
+      ">
+        Hello <strong>${name}</strong>,
+      </p>
 
-//     <p style="
-//       font-size: 18px;
-//       line-height: 1.8;
-//       max-width: 600px;
-//       margin: auto;
-//     ">
-//       Just wanted to remind you something today...
-//       <br/><br/>
-//       You are the <b>best thing</b> that has ever happened to me. ✨
-//       <br/><br/>
-//       No matter how busy life gets, every moment with you still feels warm, peaceful, and special.
-//       <br/><br/>
-//       Thank you for existing.
-//       <br/>
-//       Thank you for loving me.
-//       <br/>
-//       Thank you for making my world beautiful. 🌸
-//       <br/><br/>
-//       If I could code one perfect thing in life...
-//       <br/>
-//       it would still be <b>us</b>. ❤️
-//     </p>
+      <p style="
+        color: #374151;
+        font-size: 16px;
+        line-height: 1.8;
+      ">
+        Your transaction has been completed successfully.
+      </p>
 
-//     <div style="
-//       margin-top: 30px;
-//       font-size: 24px;
-//     ">
-//       💖 🌹 🥰 💕
-//     </div>
+      <div style="
+        margin: 30px 0;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+      ">
 
-//     <p style="
-//       margin-top: 35px;
-//       font-size: 16px;
-//       opacity: 0.9;
-//     ">
-//       Forever yours,<br/>
-//       <b>Wasi ❤️</b>
-//     </p>
-//   </div>
-//   `;
+        <p style="
+          margin: 10px 0;
+          color: #111827;
+          font-size: 16px;
+        ">
+          <strong>Amount Sent:</strong> ${amount}
+        </p>
 
-//   await sendEmail(userEmail, subject, text, html);
-// }
+        <p style="
+          margin: 10px 0;
+          color: #111827;
+          font-size: 16px;
+        ">
+          <strong>Recipient Account:</strong> ${toAccount}
+        </p>
 
-module.exports = { sendRegisterEmail };
+        <p style="
+          margin: 10px 0;
+          color: #16a34a;
+          font-size: 16px;
+          font-weight: bold;
+        ">
+          Status: Successful
+        </p>
+
+      </div>
+
+      <p style="
+        color: #374151;
+        font-size: 16px;
+        line-height: 1.8;
+      ">
+        Thank you for using <strong>Wasi B Backend Ledger</strong>.
+      </p>
+
+      <p style="
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.8;
+      ">
+        If you did not authorize this transaction or need assistance,
+        please contact our support team immediately.
+      </p>
+
+      <div style="
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+        color: #6b7280;
+        font-size: 14px;
+        text-align: center;
+      ">
+        © ${new Date().getFullYear()} Wasi B Backend Ledger. All rights reserved.
+      </div>
+
+    </div>
+  </div>
+  `;
+
+  await sendEmail(userEmail, subject, text, html);
+}
+
+async function sendTransactionFailureEmail(userEmail, name, amount, toAccount) {
+  const subject = "Transaction Failed - Wasi B Backend Ledger";
+
+  const text = `
+Hello ${name},
+
+We regret to inform you that your recent transaction could not be completed.
+
+Transaction Details:
+--------------------------------
+Amount Attempted: ${amount}
+Recipient Account: ${toAccount}
+Status: Failed
+--------------------------------
+
+Possible reasons may include:
+- Insufficient balance
+- Invalid recipient account
+- Network or server issue
+
+Please review the transaction details and try again.
+
+If you continue facing issues or did not attempt this transaction, contact our support team immediately.
+
+Best regards,
+Wasi B Backend Ledger Team
+  `;
+
+  const html = `
+  <div style="
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    padding: 40px 20px;
+  ">
+    <div style="
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    ">
+
+      <h1 style="
+        color: #dc2626;
+        margin-bottom: 20px;
+        text-align: center;
+      ">
+        Transaction Failed
+      </h1>
+
+      <p style="
+        color: #374151;
+        font-size: 16px;
+        line-height: 1.8;
+      ">
+        Hello <strong>${name}</strong>,
+      </p>
+
+      <p style="
+        color: #374151;
+        font-size: 16px;
+        line-height: 1.8;
+      ">
+        We regret to inform you that your recent transaction could not be completed.
+      </p>
+
+      <div style="
+        margin: 30px 0;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+      ">
+
+        <p style="
+          margin: 10px 0;
+          color: #111827;
+          font-size: 16px;
+        ">
+          <strong>Amount Attempted:</strong> ${amount}
+        </p>
+
+        <p style="
+          margin: 10px 0;
+          color: #111827;
+          font-size: 16px;
+        ">
+          <strong>Recipient Account:</strong> ${toAccount}
+        </p>
+
+        <p style="
+          margin: 10px 0;
+          color: #dc2626;
+          font-size: 16px;
+          font-weight: bold;
+        ">
+          Status: Failed
+        </p>
+
+      </div>
+
+      <div style="
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+      ">
+        <p style="
+          color: #991b1b;
+          margin: 0 0 10px 0;
+          font-weight: bold;
+        ">
+          Possible reasons:
+        </p>
+
+        <ul style="
+          color: #7f1d1d;
+          padding-left: 20px;
+          line-height: 1.8;
+          margin: 0;
+        ">
+          <li>Insufficient balance</li>
+          <li>Invalid recipient account</li>
+          <li>Network or server issue</li>
+        </ul>
+      </div>
+
+      <p style="
+        color: #374151;
+        font-size: 16px;
+        line-height: 1.8;
+      ">
+        Please review the transaction details and try again.
+      </p>
+
+      <p style="
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.8;
+      ">
+        If you continue facing issues or did not attempt this transaction,
+        please contact our support team immediately.
+      </p>
+
+      <div style="
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+        color: #6b7280;
+        font-size: 14px;
+        text-align: center;
+      ">
+        © ${new Date().getFullYear()} Wasi B Backend Ledger. All rights reserved.
+      </div>
+
+    </div>
+  </div>
+  `;
+
+  await sendEmail(userEmail, subject, text, html);
+}
+
+module.exports = {
+  sendRegisterEmail,
+  sendTransactionEmail,
+  sendTransactionFailureEmail,
+};
